@@ -1,0 +1,193 @@
+//# Front-end Style Guide
+
+//## Layout
+
+//The designs were created to the following widths:
+
+
+//## Colors
+
+//### Primary
+
+$Dark_cyan: hsl(185, 75%, 39%);
+$Very_dark_desaturated_blue: hsl(229, 23%, 23%);
+$Dark_grayish_blue: hsl(227, 10%, 46%);
+
+//### Neutral
+
+$Dark_gray: hsl(0, 0%, 59%);
+
+//## Typography
+
+//### Body Copy
+
+$Font_size_name_and_stats: 1.8rem;
+
+//### Font
+
+$Family_Kumbh_Sans: 'Kumbh Sans', sans-serif;
+$Weights_4: 400;
+$Weights_7: 700;
+@mixin circle($width){
+    width: $width*1px;
+    height: $width*1px;
+    $radio:calc($width / 2);
+//left: auto;
+    bottom: calc(100% - $radio *1px);
+    right: calc(100% - $radio *1px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+%text {
+    font-weight: $Weights_7;
+    color: $Very_dark_desaturated_blue;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+main {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: $Dark_cyan;
+    font-family: $Family_Kumbh_Sans;
+    font-size: $Font_size_name_and_stats;
+    position: relative;
+    overflow: hidden;
+    max-width: 375px;
+    min-width: 300px;
+    margin: auto;
+
+    .img--circle-up {
+       
+        position: absolute;
+      
+        @include circle(500);
+
+    }
+
+    .img--circle-down {
+        @extend .img--circle-up;
+        position: absolute;
+        //@include circle(400);
+        $radio:250px;
+        top: calc(100% - $radio );
+        left: calc(100% - $radio );
+        z-index: 1;
+    }
+
+    section {
+        display: flex;
+        width: 300px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        height: auto;
+        margin: auto;
+        background-color: white;
+        border-radius: 20px;
+        z-index: 2;
+
+        .section-up {
+            position: relative;
+
+            .div--user {
+                position: absolute;
+                top: calc(100% - 48px);
+                left: calc(50% - 48px);
+
+                img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                    border: 5px solid white;
+                }
+            }
+        }
+
+        .section-down {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            //justify-content: space-between;
+            align-items: center;
+            padding-top: 70px;
+            gap: 10px;
+            .london{
+                font-size: 1.4rem;
+                font-weight: 400;
+                color: $Dark_gray;
+            }
+
+            div{
+               
+                & :nth-child(1){
+                    font-weight: 700;
+                    color: $Very_dark_desaturated_blue;
+                }
+                & :nth-child(2){
+                    font-weight: 400;
+                    color: $Dark_gray;
+                }
+            }
+            .line {
+                width: 100%;
+                height: 1px;
+                background-color: rgba(128, 128, 128, 0.315);
+            }
+
+            .div--metrics {
+                width: 100%;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                margin: 20px 0px;
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 5px;
+
+                    & span:nth-child(1) {
+                        @extend %text;
+                    }
+
+                    & span:nth-child(2) {
+                        color: $Dark_gray;
+                        font-size: 1.2rem;
+                        letter-spacing: 2px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media(min-width:1440px){
+    main{
+       min-width: none;
+       max-width: none;
+
+       .img--circle-up{
+
+@include circle(1500);
+       }
+       .img--circle-down{
+     //   @extend .img--circle-up;
+        //position: absolute;
+        //@include circle(400);
+        $radio:750px;
+        top: calc(150% - $radio );
+        left: calc(80% - $radio );
+       }
+    }
+}
